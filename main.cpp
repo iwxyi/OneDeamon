@@ -34,16 +34,16 @@ int main(int argc, char *argv[])
 
     QString dir = QCoreApplication::applicationDirPath();
     QString baseName = QCoreApplication::applicationName(); // 不带exe
-    baseName.replace(QRegularExpression("_?(Deamon|DEAMON|deamon)"), "");
+    baseName.replace(QRegularExpression("_?(Deamon|DEAMON|deamon)$"), "");
     baseName = baseName + ".exe";
     QString appPath = QDir(dir).absoluteFilePath(baseName);
-    qInfo() << "deamon target:" << baseName << appPath;
+    qInfo() << "target:" << appPath;
 
     while (true)
     {
         if (!isRunning(baseName))
         {
-            qInfo() << "try open:" << appPath;
+            qInfo() << "open:" << appPath;
             openApplication(appPath);
         }
 
